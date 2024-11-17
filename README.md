@@ -1,6 +1,6 @@
 ![header](docs/header.jpg)
 
-# AlphaFold 3
+# AlphaFold 3 efficiency pipeline
 
 This package provides an implementation of the inference pipeline of AlphaFold
 3. See below for how to access the model parameters. You may only use AlphaFold
@@ -57,7 +57,7 @@ following input JSON file named `alphafold_input.json`:
 }
 ```
 
-You can then run AlphaFold 3 using the following command:
+You can then run AlphaFold 3 efficiently using the following command:
 
 ```
 docker run -it \
@@ -67,8 +67,9 @@ docker run -it \
     --volume <DATABASES_DIR>:/root/public_databases \
     --gpus all \
     alphafold3 \
-    python run_alphafold.py \
-    --json_path=/root/af_input/fold_input.json \
+    python run_alphafold_eff.py \
+    --input_dir=/root/af_input \
+    --tot_n_cpu=128 \
     --model_dir=/root/models \
     --output_dir=/root/af_output
 ```
