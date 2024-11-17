@@ -666,7 +666,7 @@ def main(_):
                                                                            pathlib.Path(_MODEL_DIR.value),
                                                                            _JAX_COMPILATION_CACHE_DIR.value,
                                                                            _buckets_tuple)) as gpu_executor:
-      with futures.ProcessPoolExecutor(max_workers=_TOTAL_N_CPU.value,
+      with futures.ProcessPoolExecutor(max_workers=_TOTAL_N_CPU.value, max_tasks_per_child=1,
                                        initializer=cpu_model_init, initargs=(_cpu_pool_num, _sub_pool_condition, _buckets_tuple)) as cpu_executor:
         task_list = [
           cpu_executor.submit(cpu_preprocess, fold_input, data_pipeline_config,
@@ -704,7 +704,7 @@ def main(_):
   elif _RUN_DATA_PIPELINE.value is None:
     _cpu_pool_num = multiprocessing.Value('i', max(1, math.floor(_TOTAL_N_CPU.value / _MSA_N_CPU.value)))
     _sub_pool_condition = multiprocessing.Condition()
-    with futures.ProcessPoolExecutor(max_workers=_TOTAL_N_CPU.value,
+    with futures.ProcessPoolExecutor(max_workers=_TOTAL_N_CPU.value, max_tasks_per_child=1,
                                      initializer=cpu_model_init,
                                      initargs=(_cpu_pool_num, _sub_pool_condition, _buckets_tuple)) as cpu_executor:
       task_list = [
