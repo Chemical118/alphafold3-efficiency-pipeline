@@ -2,26 +2,8 @@
 
 # AlphaFold 3 efficiency pipeline
 
-This package provides an implementation of the inference pipeline of AlphaFold
-3. See below for how to access the model parameters. You may only use AlphaFold
-3 model parameters if received directly from Google. Use is subject to these
-[terms of use](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md).
-
-Any publication that discloses findings arising from using this source code, the
-model parameters or outputs produced by those should [cite](#citing-this-work)
-the
-[Accurate structure prediction of biomolecular interactions with AlphaFold 3](https://doi.org/10.1038/s41586-024-07487-w)
-paper.
-
-Please also refer to the Supplementary Information for a detailed description of
-the method.
-
-AlphaFold 3 is also available at
-[alphafoldserver.com](https://alphafoldserver.com) for non-commercial use,
-though with a more limited set of ligands and covalent modifications.
-
-If you have any questions, please contact the AlphaFold team at
-[alphafold@google.com](mailto:alphafold@google.com).
+Efficiency pipeline of [AlphaFold 3](https://github.com/google-deepmind/alphafold3).
+We modified Alphafold3's `run_alphafold.py` and `src/alphafold3/data/pipeline.py` to allow parallelization of GPU and CPU computations. The modified files will be prefixed with `_eff.py`.
 
 ## Obtaining Model Parameters
 
